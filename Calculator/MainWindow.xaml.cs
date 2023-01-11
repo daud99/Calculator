@@ -38,6 +38,7 @@ namespace Calculator
             float num = -1;
 
             Button tmpButton = e.Source as Button;
+
             if(float.TryParse(tmpButton.Content.ToString(), out num))
             {
                 // Operand
@@ -58,7 +59,19 @@ namespace Calculator
                 clicked = true;
                 if (!string.IsNullOrEmpty(Result))
                 {
-                    if (consecutiveEqual == true && tmpButton.Content.ToString() == "=")
+                    if (tmpButton.Content.ToString() == "%")
+                    {
+                        Result =  (int.Parse(Result)/100.0).ToString();
+                        labelResult.Content = Result;
+                        clicked = false;
+                    }                   
+                    else if (tmpButton.Content.ToString() == "." && !Result.Contains("."))
+                    {
+                        Result = $"{Result}{tmpButton.Content.ToString()}";
+                        labelResult.Content = Result;
+                        clicked = false;
+                    }
+                    else if (consecutiveEqual == true && tmpButton.Content.ToString() == "=")
                     {
                         Result = PerformAction();
                         labelResult.Content = Result;
@@ -71,10 +84,13 @@ namespace Calculator
                         LastValue = tmp;
                         consecutiveEqual = true;
                     }
-                    else
+                    else if(tmpButton.Content.ToString() != ".")
                     {
                         Operator = tmpButton.Content.ToString();
                         consecutiveEqual = false;
+                    } else
+                    {
+                        clicked = false;
                     }
                 }
             }
@@ -105,6 +121,12 @@ namespace Calculator
             Operator = "";
             consecutiveEqual= false;
             clicked= false;
+            labelResult.Content= Result;
+        }
+
+        private void buttonChangeSign(object sender, RoutedEventArgs e)
+        {
+            Result = (-int.Parse(Result)).ToString();
             labelResult.Content= Result;
         }
     }
