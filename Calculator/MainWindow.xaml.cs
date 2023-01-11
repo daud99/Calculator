@@ -58,10 +58,16 @@ namespace Calculator
             {
                 clicked = true;
                 if (!string.IsNullOrEmpty(Result))
-                {
-                    if (tmpButton.Content.ToString() == "%")
+                { 
+                    if(tmpButton.Content.ToString() == "+/-")
                     {
-                        Result =  (int.Parse(Result)/100.0).ToString();
+                        Result = (-float.Parse(Result)).ToString();
+                        labelResult.Content = Result;
+                        clicked = false;
+                    }
+                    else if (tmpButton.Content.ToString() == "%")
+                    {
+                        Result =  (float.Parse(Result)/100.0).ToString();
                         labelResult.Content = Result;
                         clicked = false;
                     }                   
@@ -124,10 +130,5 @@ namespace Calculator
             labelResult.Content= Result;
         }
 
-        private void buttonChangeSign(object sender, RoutedEventArgs e)
-        {
-            Result = (-int.Parse(Result)).ToString();
-            labelResult.Content= Result;
-        }
     }
 }
