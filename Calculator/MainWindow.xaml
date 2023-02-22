@@ -7,32 +7,11 @@
         mc:Ignorable="d"
         Title="Calculator" Height="450" Width="454">
     <Window.Resources>
-        <SolidColorBrush Color="Orange" x:Key="orangeColor"/>
-        <SolidColorBrush Color="Black" x:Key="blackColor"/>
-
-        <Style x:Key="operator" TargetType="Button">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="24"/>
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="Background" Value="{StaticResource orangeColor}"/>
-                <Setter Property="Foreground" Value="White"/>
-            </Style.Setters>
-        </Style>
-
-        <Style x:Key="operend" TargetType="Button">
-            <Style.Setters>
-                <Setter Property="FontSize" Value="24"/>
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="Background" Value="{StaticResource blackColor}"/>
-                <Setter Property="Foreground" Value="White"/>
-            </Style.Setters>
-        </Style>
-
-        <Style TargetType="Label">
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-        </Style>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="./Resources/Styles/UserControlStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid Margin="10" ButtonBase.Click="buttonClick">
         <Grid.ColumnDefinitions>
@@ -50,24 +29,25 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.ColumnSpan="6" x:Name="labelResult"/>
-        <Button Grid.Row="1" Grid.Column="0" Content="C"  Style="{StaticResource operend}" Click="buttonClear"/>
-        <Button Grid.Row="1" Grid.Column="1" Content="+/-"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="%"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="/" Style="{StaticResource operator}"/>
-        <Button Grid.Row="2" Grid.Column="0" Content="7"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="8"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="2" Grid.Column="2" Content="9"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="2" Grid.Column="3" Content="x" Style="{StaticResource operator}"/>
-        <Button Grid.Row="3" Grid.Column="0" Content="4"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="3" Grid.Column="1" Content="5"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="3" Grid.Column="2" Content="6"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="3" Grid.Column="3" Content="-" Style="{StaticResource operator}"/>
-        <Button Grid.Row="4" Grid.Column="0" Content="1"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="2"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="4" Grid.Column="2" Content="3"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="4" Grid.Column="3" Content="+" Style="{StaticResource operator}"/>
-        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="0"  Style="{StaticResource operend}"/>
-        <Button Grid.Row="5" Grid.Column="2" Content="."  Style="{StaticResource operend}"/>
-        <Button Grid.Row="5" Grid.Column="3" Content="=" Style="{StaticResource operator}"/>
+        <Button Grid.Row="1" Grid.Column="0" Content="C" Click="buttonClear" Style="{StaticResource Operator}"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="+/-" Style="{StaticResource Operator}"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="%" Style="{StaticResource Operator}"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="/" Style="{StaticResource Operator}"/>
+        <Button Grid.Row="2" Grid.Column="0" Content="7"/>
+        <Button Grid.Row="2" Grid.Column="1" Content="8"/>
+        <Button Grid.Row="2" Grid.Column="2" Content="9"/>
+        <Button Grid.Row="2" Grid.Column="3" Content="x" Style="{StaticResource Operator}"/>
+
+        <Button Grid.Row="3" Grid.Column="0" Content="4"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="5"/>
+        <Button Grid.Row="3" Grid.Column="2" Content="6"/>
+        <Button Grid.Row="3" Grid.Column="3" Content="-" Style="{StaticResource Operator}"/>
+        <Button Grid.Row="4" Grid.Column="0" Content="1"/>
+        <Button Grid.Row="4" Grid.Column="1" Content="2"/>
+        <Button Grid.Row="4" Grid.Column="2" Content="3"/>
+        <Button Grid.Row="4" Grid.Column="3" Content="+" Style="{StaticResource Operator}"/>
+        <Button Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Content="0"/>
+        <Button Grid.Row="5" Grid.Column="2" Content="."/>
+        <Button Grid.Row="5" Grid.Column="3" Content="=" Style="{StaticResource Operator}"/>
     </Grid>
 </Window>
